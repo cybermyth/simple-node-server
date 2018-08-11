@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: readiness-deployment
+spec:
+  replicas: 9
+  selector:
+    matchLabels:
+      app: readiness
+  template:
+    metadata:
+      labels:
+        app: readiness
+        version: v1.0
+    spec:
+      containers:
+        - name: readiness
+          image: matejfistrovic/readinessprobe
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4000
+          env:
+            - name: VERSION
+              value: v1.0
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 4000
+            initialDelaySeconds: 3
+            periodSeconds: 3
