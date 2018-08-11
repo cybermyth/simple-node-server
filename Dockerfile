@@ -1,5 +1,4 @@
-FROM node:boron-wheezy
-MAINTAINER Matej Fistrovič "matej.fistrovic@gmail.com"
+FROM node:carbon
 
 # Create app directory
 RUN mkdir -p /usr/src/app/src /usr/src/app/log

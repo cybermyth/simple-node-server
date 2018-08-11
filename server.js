@@ -2,7 +2,7 @@ const express = require('express');
 const os = require('os');
 const app = express();
 
-const version = process.env.VERSION || 'v1';
+const version = process.env.VERSION || 'v1.0';
 const started = new Date();
 
 function prepareResponse() {
