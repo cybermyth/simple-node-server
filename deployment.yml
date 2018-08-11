@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: simple-node-server-deployment
+spec:
+  replicas: 9
+  selector:
+    matchLabels:
+      app: simple-node-server
+  template:
+    metadata:
+      labels:
+        app: simple-node-server
+        version: v1.0
+    spec:
+      containers:
+        - name: simple-node-server
+          image: matejfistrovic/simple-node-server
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4000
+          env:
+            - name: VERSION
+              value: v1.0
