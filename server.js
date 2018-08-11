@@ -8,7 +8,7 @@ const started = new Date();
 function prepareResponse() {
   const timestamp = new Date();
   const hostname = os.hostname();
-  const runningTime = Math.abs((timeStamp.getTime() - started.getTime()) / 1000);
+  const runningTime = Math.abs((timestamp.getTime() - started.getTime()) / 1000);
   
   const response = {
       hostname,
@@ -29,7 +29,7 @@ app.get('/readiness', (req, res) => {
   const response = prepareResponse();
   console.log(`Running time: ${response.runningTime}s on pod: ${response.hostname}`);
   if (response.runningTime <= 15) {
-    res.status(500).send(`Error occured: ${runningTime}`);
+    res.status(500).send(`Error occured: ${response.runningTime}`);
   } else {
     res.status(200).send(response)
   }
@@ -41,7 +41,7 @@ app.get('/liveness', (req, res) => {
   if (response.runningTime <= 40) {
     res.status(200).send(response)
   } else {
-    res.status(500).send(`Error occured: ${runningTime}`);
+    res.status(500).send(`Error occured: ${response.runningTime}`);
   }
 });
 
