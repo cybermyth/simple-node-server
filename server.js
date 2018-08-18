@@ -29,7 +29,7 @@ app.get('/readiness', (req, res) => {
   const response = prepareResponse();
   console.log(`Running time: ${response.runningTime}s on pod: ${response.hostname}`);
   if (response.runningTime <= 15) {
-    res.status(500).send(`Error occured: ${response.runningTime}`);
+    res.status(500).send(`Service is starting up. Running time: ${response.runningTime}s`);
   } else {
     res.status(200).send(response)
   }
@@ -41,7 +41,7 @@ app.get('/liveness', (req, res) => {
   if (response.runningTime <= 40) {
     res.status(200).send(response)
   } else {
-    res.status(500).send(`Error occured: ${response.runningTime}`);
+    res.status(500).send(`Service has shut down: Running time: ${response.runningTime}s`);
   }
 });
 
