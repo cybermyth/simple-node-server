@@ -49,7 +49,7 @@ app.get('/healthz', (req, res) => {
   const response = prepareResponse();
   console.log(`Running time: ${response.runningTime}s on pod: ${response.hostname}`);
   if (response.runningTime <= 15) {
-    res.status(500).send(`Readines probe failed: ${response.runningTime}`);
+    res.status(500).send(`Readiness probe failed: ${response.runningTime}`);
   } else if (response.runningTime > 15 && response.runningTime <= 40) {
     res.status(200).send(response)
   } else {
