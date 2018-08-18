@@ -12,3 +12,4 @@ spec:
   - port: 4000
     protocol: TCP
     nodePort: 30065
+    

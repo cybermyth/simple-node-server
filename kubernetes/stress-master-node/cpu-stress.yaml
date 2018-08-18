@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: cpu-stress2
+  name: cpu-stress
 spec:
   containers:
-  - name: cpu-stress2
+  - name: cpu-stress
     image: polinux/stress
     command: ["stress"]
     args: ["--cpu", "128"]
