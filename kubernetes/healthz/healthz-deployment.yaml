@@ -11,7 +11,7 @@ spec:
     metadata:
       labels:
         app: healthz
-        version: v1.0
+        version: v1.0.0
     spec:
       containers:
         - name: healthz
@@ -21,7 +21,7 @@ spec:
             - containerPort: 4000
           env:
             - name: VERSION
-              value: v1.0
+              value: v1.0.0
           livenessProbe:
             httpGet:
               path: /healthz
@@ -34,3 +34,4 @@ spec:
               port: 4000
             initialDelaySeconds: 3
             periodSeconds: 3
+            
