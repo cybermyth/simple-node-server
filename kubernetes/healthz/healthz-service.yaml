@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: healthz-service
+  labels:
+    app: healthz-service
+spec:
+  selector:
+    app: healthz
+  type: NodePort
+  ports:
+  - port: 4000
+    protocol: TCP
+    nodePort: 30070

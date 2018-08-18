@@ -1,24 +1,24 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: liveness-deployment
+  name: healthz-deployment
 spec:
   replicas: 9
   selector:
     matchLabels:
-      app: liveness
+      app: healthz
   template:
     metadata:
       labels:
-        app: liveness
-        version: v1.0
+        app: healthz
+        version: v8.0
     spec:
       containers:
-        - name: liveness
-          image: matejfistrovic/healthcheck
+        - name: healthz
+          image: matejfistrovic/healthz
           imagePullPolicy: Always
           ports:
             - containerPort: 4000
           env:
             - name: VERSION
-              value: v1.0
+              value: v8.0

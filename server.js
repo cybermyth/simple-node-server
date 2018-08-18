@@ -45,4 +45,16 @@ app.get('/liveness', (req, res) => {
   }
 });
 
+app.get('/healthz', (req, res) => {
+  const response = prepareResponse();
+  console.log(`Running time: ${response.runningTime}s on pod: ${response.hostname}`);
+  if (response.runningTime <= 15) {
+    res.status(500).send(`Readines probe failed: ${response.runningTime}`);
+  } else if (response.runningTime > 15 && response.runningTime <= 40) {
+    res.status(200).send(response)
+  } else {
+    res.status(500).send(`Liveness probe failed: ${response.runningTime}`);
+  }
+});
+
 app.listen(4000, () => console.log('Server listening on 4000'));
